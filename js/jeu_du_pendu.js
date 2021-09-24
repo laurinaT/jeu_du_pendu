@@ -2,6 +2,7 @@
 
 // let choixAccueilJ = prompt("Bonjour, Bienvenue sur le jeu du pendu !\n\nVous pouvez taper :\n   \"j\" : pour jouer\n   \"r\" : pour afficher les règles \n   \"q\" : pour quitter le jeu \n");
 
+let motChoisi = listeMotsRandom(); // renvoi le mot choisi par la fonction
 
 
 // // __________Déclaration des fonctions________________________________________________________
@@ -18,14 +19,19 @@
 //     }
 // }
 
-function listeMotsRandom() {
+function listeMotsRandom() {// choisi un mot au hasard dans la liste
     let mots = ["aquarium", "velociraptor", "cartable", "ventricule", "saturne"];
     let randomMot = mots[Math.floor(Math.random()*mots.length)];
     return randomMot;
 }
-let motChoisi = listeMotsRandom();
-console.log(motChoisi);
 
+// function motCache (motChoisi) {
+    let splitMot = motChoisi.split('');// split le mot et le renvoi sous forme de tableau, ok fonctionne
+    let brouille = [];
+    splitMot.forEach(lettre => brouille.push("_"));
+    alert(brouille);
+        
+// }
 // __________Code Courant________________________________________________________
 
 // choixAccueil(choixAccueilJ);// appel fonction avec variable choixAccueilJoueur
