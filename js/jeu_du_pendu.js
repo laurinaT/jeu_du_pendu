@@ -4,7 +4,7 @@
 
 let motChoisi = listeMotsRandom(); // renvoi le mot choisi par la fonction
 let motBrouille = motCache(motChoisi);// récupère le mot brouille par des tirets renvoyé par la fonction motCache()
-
+let lettreJoueur = "";
 // __________Déclaration des fonctions________________________________________________________
 
 // function  choixAccueil(reponseJoueur) {
@@ -31,7 +31,18 @@ function motCache (mot) {
     return brouille;// renvoie un tableau contenant des tirets au lieu des lettres du mot choisi
 }
 
+function lettreJoueurConform(lettreJoueur) {
+    if(lettreJoueur.length === 1 ) {
+        alert("OK !!!");
+        // return lettreJoueurOk;
+    }
+    else{
+        alert("Vous avez tapé trop de lettres... Ou pas assez, vous venez de perdre un point ^^");
+    }
+}
+
 // __________Code Courant________________________________________________________
 
 // choixAccueil(choixAccueilJ);// appel fonction avec variable choixAccueilJoueur
-prompt(motBrouille + "\n\nChoisissez votre lettre : ");
+lettreJoueur = prompt(motBrouille + "\n\nChoisissez votre lettre : ");
+lettreJoueurConform(lettreJoueur);
