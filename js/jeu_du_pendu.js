@@ -6,6 +6,8 @@ let motChoisi = listeMotsRandom(); // renvoi le mot choisi par la fonction
 motChoisi = motChoisi.split(""); // split le mot et le renvoi sous forme de tableau, ok fonctionne
 let motBrouille = motCache(motChoisi);// récupère le mot brouille par des tirets renvoyé par la fonction motCache()
 let lettreJoueur = "";
+let scoreJoueur = "";
+
 // __________Déclaration des fonctions________________________________________________________
 
 // function  choixAccueil(reponseJoueur) {
@@ -34,30 +36,31 @@ function motCache (mot) {
 
 function lettreJoueurConform(lettreJoueur) {// vérifie la longueur de lettre donnée par le joueur
     if(lettreJoueur.length === 1 ) {
-        alert("OK !!!");
         return lettreJoueur.toLowerCase();
     }
-    else{
-        alert("Vous avez tapé trop de lettres... Ou pas assez, vous venez de perdre un point ^^");
+   {
+        scoreJoueur--;
+        alert("Vous avez tapé trop de lettres... Ou pas assez, vous venez de perdre un point ^^\n   Votre score est de : " + scoreJoueur);
     }
 }
 
 function verifAffichage(lettre, vraiMot, cache) { 
     for(i = 0; i < vraiMot.length; i++) {
-        alert(vraiMot[i] + " _ " + lettre);
-
-        if (vraiMot[i] == lettre) {
+        if (vraiMot[i] === lettre) {
             cache[i] = lettre;
         }
     }
     return cache;
 }
 
+
 // __________Code Courant________________________________________________________
 
 // choixAccueil(choixAccueilJ);// appel fonction avec variable choixAccueilJoueur
-lettreJoueur = prompt(motBrouille + "\n\nChoisissez votre lettre : ");
-lettreJoueur = lettreJoueurConform(lettreJoueur);
-motBrouille = verifAffichage(lettreJoueur, motChoisi, motBrouille);
-console.log(motBrouille);
+
+    scoreJoueur = 7;
+    lettreJoueur = prompt(motBrouille + "\n\n   Votre score est de : " + scoreJoueur + "\nChoisissez votre lettre : ");
+    lettreJoueur = lettreJoueurConform(lettreJoueur);
+    motBrouille = verifAffichage(lettreJoueur, motChoisi, motBrouille);
+    console.log(motBrouille);
 
