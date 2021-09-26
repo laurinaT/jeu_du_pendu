@@ -6,7 +6,7 @@ let motChoisi = listeMotsRandom(); // renvoi le mot choisi par la fonction
 motChoisi = motChoisi.split(""); // split le mot et le renvoi sous forme de tableau, ok fonctionne
 let motBrouille = motCache(motChoisi);// récupère le mot brouille par des tirets renvoyé par la fonction motCache()
 let lettreJoueur = "";
-let scoreJoueur = "";
+let scoreJoueur = 7;
 
 // __________Déclaration des fonctions________________________________________________________
 
@@ -38,13 +38,14 @@ function lettreJoueurConform(lettreJoueur) {// vérifie la longueur de lettre do
     if(lettreJoueur.length === 1 ) {
         return lettreJoueur.toLowerCase();
     }
-   {
+    {
         scoreJoueur--;
         alert("Vous avez tapé trop de lettres... Ou pas assez, vous venez de perdre un point ^^\n   Votre score est de : " + scoreJoueur);
+        scoreJoueur + 0;
     }
 }
 
-function verifAffichage(lettre, vraiMot, cache) { 
+function verifAffichage(lettre, vraiMot, cache) {  // démasquer bonne lettre du joueur
     for(i = 0; i < vraiMot.length; i++) {
         if (vraiMot[i] === lettre) {
             cache[i] = lettre;
@@ -58,9 +59,25 @@ function verifAffichage(lettre, vraiMot, cache) {
 
 // choixAccueil(choixAccueilJ);// appel fonction avec variable choixAccueilJoueur
 
-    scoreJoueur = 7;
+   
+
+while (scoreJoueur > 0 || motBrouille.join("") != motChoisi.join("")){
     lettreJoueur = prompt(motBrouille + "\n\n   Votre score est de : " + scoreJoueur + "\nChoisissez votre lettre : ");
     lettreJoueur = lettreJoueurConform(lettreJoueur);
-    motBrouille = verifAffichage(lettreJoueur, motChoisi, motBrouille);
-    console.log(motBrouille);
+    if(motBrouille.join("") != verifAffichage(lettreJoueur, motChoisi, motBrouille).join("")){
+        motBrouille = verifAffichage(lettreJoueur, motChoisi, motBrouille);
+        alert("Bravo ! Vous avez trouvé une lettre du mot caché ! ^^\n votre score est toujours de : " + scoreJoueur);
 
+    }
+    else {
+        scoreJoueur--;
+        alert("Votre lettre n'apparaît pas dans le mot caché ! vous perdez un point ^^\n votre score est de : " + scoreJoueur);
+    }
+    console.log(motBrouille);
+}
+if(scoreJoueur === 0){
+    alert("Vous avez perdu ! Votre score est de : " + scoreJoueur);
+}
+if(motBrouille === motChoisi){
+    alert("Vous avez gagné ! Vous avez découvert le mot caché ! \n  Votre score est de : " + scoreJoueur);
+}
