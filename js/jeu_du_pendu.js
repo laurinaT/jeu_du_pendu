@@ -38,12 +38,7 @@ function lettreJoueurConform(lettreJoueur) {// vérifie la longueur de lettre do
     if(lettreJoueur.length === 1 ) {
         return lettreJoueur.toLowerCase();
     }
-    {
-        scoreJoueur--;
-        alert("Vous avez tapé trop de lettres... Ou pas assez, vous venez de perdre un point ^^\n   Votre score est de : " + scoreJoueur);
-        scoreJoueur + 0;
-    }
-}
+}     
 
 function verifAffichage(lettre, vraiMot, cache) {  // démasquer bonne lettre du joueur
     for(i = 0; i < vraiMot.length; i++) {
@@ -61,7 +56,7 @@ function verifAffichage(lettre, vraiMot, cache) {  // démasquer bonne lettre du
 
    
 
-while (scoreJoueur > 0 || motBrouille.join("") != motChoisi.join("")){
+while (scoreJoueur > 0) {
     lettreJoueur = prompt(motBrouille + "\n\n   Votre score est de : " + scoreJoueur + "\nChoisissez votre lettre : ");
     lettreJoueur = lettreJoueurConform(lettreJoueur);
     if(motBrouille.join("") != verifAffichage(lettreJoueur, motChoisi, motBrouille).join("")){
@@ -74,10 +69,12 @@ while (scoreJoueur > 0 || motBrouille.join("") != motChoisi.join("")){
         alert("Votre lettre n'apparaît pas dans le mot caché ! vous perdez un point ^^\n votre score est de : " + scoreJoueur);
     }
     console.log(motBrouille);
-}
-if(scoreJoueur === 0){
-    alert("Vous avez perdu ! Votre score est de : " + scoreJoueur);
-}
-if(motBrouille === motChoisi){
-    alert("Vous avez gagné ! Vous avez découvert le mot caché ! \n  Votre score est de : " + scoreJoueur);
+
+    if(scoreJoueur === 0){
+        alert("Vous avez perdu ! \n Le mot caché était : " + motChoisi.join("") + "\nVotre score est de : " + scoreJoueur);
+    }
+    if(motBrouille.join("") === motChoisi.join("")){
+        alert("Vous avez gagné ! Vous avez découvert le mot caché ! \n  Votre score est de : " + scoreJoueur);
+    break;
+    }
 }
